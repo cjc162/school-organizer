@@ -1,0 +1,32 @@
+<!doctype html>
+<title>{% block title %}Welcome{% endblock %} | Organizer</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+<div class="page">
+  <nav id="navbar">
+    <div class="container">
+      <h1>Organizer</h1>
+      <ul>
+        {% if g.user %}
+            <li><a href="{{ url_for('logout') }}">Sign Out</a></li>
+            <li><a href="{{ url_for('projects') }}">View Projects</a></li>
+            <li><a href="{{ url_for('add_projects') }}">Add Projects</a></li>
+        {% else %}
+            <li><a href="{{ url_for('register') }}">Register</a></li>
+            <li><a href="{{ url_for('index') }}">Login</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+  {% with flashes = get_flashed_messages() %}
+    {% if flashes %}
+      <ul class="flashes">
+      {% for message in flashes %}
+        <li>{{ message }}
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+  <div class="body">
+  {% block body %}{% endblock %}
+  </div>
+</div>

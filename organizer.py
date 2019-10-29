@@ -1,0 +1,134 @@
+import time
+import os
+from hashlib import md5
+from datetime import datetime
+from flask import Flask, request, session, url_for, redirect, render_template, abort, g, flash, _app_ctx_stack
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.sql import select
+from sqlalchemy.sql.functions import func
+from werkzeug import check_password_hash, generate_password_hash
+
+from models import db, User
+
+app = Flask(__name__)
+
+SECRET_KEY = 'development key'
+
+SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(app.root_path, 'organizer.db')
+
+app.config.from_object(__name__)
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db.init_app(app)
+
+@app.cli.command('initdb')
+def initdb_command():
+	db.create_all()
+
+	print('Initialized the database.')
+
+def get_user_id(username):
+	rv = User.query.filter_by(username=username).first()
+	return rv.user_id if rv else None
+
+def get_event_id(date):
+	rv = Event.query.filter_by(date=date).first()
+	return rv.event_id if rv else None
+
+def get_date_object(date):
+	split_date = date.split("-")
+
+	if(len(split_date) != 3):
+		return None
+	else:
+		return datetime(int(split_date[0]), int(split_date[1]), int(split_date[2]))
+
+@app.before_request
+def before_request():
+	g.user = None
+	if 'user_id' in session:
+		g.user = User.query.filter_by(user_id=session['user_id']).first()
+
+@app.route('/')
+def index():
+	if g.user:
+		return redirect(url_for('projects'))
+	else:
+		return redirect(url_for('login'))
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+	# If user is logged in, redirect them to index
+	if g.user:
+		return redirect(url_for('index'))
+	error = None
+
+	# If the user posts (submits)
+	if request.method == 'POST':
+		# See if username entered is registered
+		user = User.query.filter_by(username=request.form['username']).first()
+		# If usernmame is not registered, display error
+		if user is None:
+			error = 'Invalid username'
+		# If password for the user is not correct, display error
+		elif not check_password_hash(user.pw_hash, request.form['password']):
+			error = 'Invalid password'
+		# A correct username and password is entered, redirect them to the correct page
+		else:
+			flash('You were logged in')
+			session['user_id'] = user.user_id
+			return redirect(url_for('projects'))
+	return render_template('login.html', error=error)
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+	# If user is logged in
+	if g.user:
+		return redirect(url_for('index'))
+	error = None
+	# If user posts (submits)
+	if request.method == 'POST':
+		# Check username is not empty
+		if not request.form['username']:
+			error = 'You have to enter a username'
+		# Check password is not empty
+		elif not request.form['password']:
+			error = 'You have to enter a password'
+		# Check both passwords match
+		elif request.form['password'] != request.form['password2']:
+			error = 'The two passwords do not match'
+		# Check if username is already taken
+		elif get_user_id(request.form['username']) is not None:
+			error = 'The username is already taken'
+		# User successfully registered
+		else:
+			db.session.add(User(request.form['username'], generate_password_hash(request.form['password'])))
+			db.session.commit()
+			flash('You were successfully registered and can login now')
+			return redirect(url_for('login'))
+	return render_template('register.html', error=error)
+
+@app.route('/logout')
+def logout():
+	flash('You were logged out')
+	# Log out user
+	session.pop('user_id', None)
+	return redirect(url_for('index')) 
+
+@app.route('/projects')
+def projects():
+	return render_template('projects.html')
+
+@app.route('/add_projects')
+def add_projects():
+	return render_template('add_projects.html')
+
+
+
+
+
+
+
+
+
+
