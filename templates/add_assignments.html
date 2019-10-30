@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block title %}Add Assignment{% endblock %}
+{% block body %}
+  	{% if error %}<div class="error"><strong>Error:</strong> {{ error }}</div>{% endif %}
+	<form action="" method="post">
+		<h2>Add New Assignment</h2>
+		<dl>
+		  <dt>Assignment Name:
+		  <dd><input type="text" name="name" size="20" autocomplete="off" value="{{ request.form.name }}">
+		  <dt>Due Date:
+		  <dd><input type="date" name="date" size="30" min="2019-10-29">
+		  <dt>Type:
+		  <dd>
+		  	<select name="type">
+			  <option value="exam">Exam</option>
+			  <option value="project">Project</option>
+			  <option value="homework">Homework</option>
+			  <option value="other">Other</option>
+			</select>
+		</dl>
+		<div class="actions"><input type="submit" value="Add"></div>
+	</form>
+{% endblock %}

@@ -8,7 +8,7 @@ from sqlalchemy.sql import select
 from sqlalchemy.sql.functions import func
 from werkzeug import check_password_hash, generate_password_hash
 
-from models import db, User
+from models import db, User, Projects
 
 app = Flask(__name__)
 
@@ -52,7 +52,7 @@ def before_request():
 @app.route('/')
 def index():
 	if g.user:
-		return redirect(url_for('projects'))
+		return redirect(url_for('assignments'))
 	else:
 		return redirect(url_for('login'))
 
@@ -77,7 +77,7 @@ def login():
 		else:
 			flash('You were logged in')
 			session['user_id'] = user.user_id
-			return redirect(url_for('projects'))
+			return redirect(url_for('assignments'))
 	return render_template('login.html', error=error)
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -115,14 +115,41 @@ def logout():
 	session.pop('user_id', None)
 	return redirect(url_for('index')) 
 
-@app.route('/projects')
-def projects():
-	return render_template('projects.html')
+@app.route('/assignments')
+def assignments():
+	# If user is not logged in
+	if not g.user:
+		return redirect(url_for('index'))
 
-@app.route('/add_projects')
-def add_projects():
-	return render_template('add_projects.html')
+	# Get all events the current user has created
+	assignments = Projects.query.filter_by(user_id=g.user.user_id).order_by(Projects.date.asc()).all()	
 
+	return render_template('assignments.html', assignments = assignments)
+
+@app.route('/add_assignments', methods=['GET', 'POST'])
+def add_assignments():
+	# If user is not logged in
+	if not g.user:
+		return redirect(url_for('index'))
+	error = None
+	# If user posts (submits)
+	if request.method == 'POST':
+		# Check name is not empty
+		if not request.form['name']:
+			error = 'You have to enter an assignment name'
+		# Check date is not empty
+		elif not request.form['date']:
+			error = 'You have to enter a due date'
+		# Assignment successfully created
+		else:
+			date = get_date_object(request.form['date'])
+			db.session.add(Projects(session['user_id'], request.form['name'], request.form['type'], date))
+			db.session.commit()
+
+			flash('Assignment successfully created')
+
+			return redirect(url_for('assignments'))
+	return render_template('add_assignments.html', error=error)
 
 
 

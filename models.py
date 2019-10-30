@@ -23,12 +23,12 @@ class Projects(db.Model):
 	due_date = db.Column(db.DateTime, nullable=False)
 	progress = db.Column(db.Integer, nullable=False)
 
-	def __init__(self, user_id, name, project_type, due_date, progress):
+	def __init__(self, user_id, name, project_type, due_date):
 		self.user_id = user_id
 		self.name = name
 		self.project_type = project_type
 		self.due_date = due_date
-		self.progress = progress
+		self.progress = 0
 		
 
 	def __repr__(self):
