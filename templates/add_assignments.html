@@ -6,18 +6,18 @@
 		<h2>Add New Assignment</h2>
 		<dl>
 		  <dt>Assignment Name:
-		  <dd><input type="text" name="name" size="20" autocomplete="off" value="{{ request.form.name }}">
+		  <dd><input type="text" name="name" size="20" autocomplete="off">
 		  <dt>Due Date:
 		  <dd><input type="date" name="date" size="30" min="2019-10-29">
 		  <dt>Type:
 		  <dd>
 		  	<select name="type">
-			  <option value="exam">Exam</option>
-			  <option value="project">Project</option>
-			  <option value="homework">Homework</option>
-			  <option value="other">Other</option>
+			  <option value="Exam">Exam</option>
+			  <option value="Project">Project</option>
+			  <option value="Homework">Homework</option>
+			  <option value="Other">Other</option>
 			</select>
 		</dl>
-		<div class="actions"><input type="submit" value="Add"></div>
+		<div class="actions"><input type="submit" value="Add Assignment"></div>
 	</form>
 {% endblock %}

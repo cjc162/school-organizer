@@ -14,10 +14,16 @@
       {% for assignment in assignments %}
       <tr>
         <td>{{ assignment.name }}</td>
-        <td>{{ assignment.due_date }}</td>
-       	<td>{{ assignment.project_type }}</td>
-       	<td>{{ assignment.progress }}</td>
-       	<td>{{ assignment.actions }}</td>
+        <td>{{ assignment.due_date.date() }}</td>
+       	<td>{{ assignment.assignment_type }}</td>
+       	<td>
+            <progress value={{ assignment.progress }} max="100"></progress>
+        </td>
+       	<td>
+            <a href="/delete_assignment/{{assignment.assignment_id}}">Delete</a>
+            <br>
+            <a href="/update_progress/{{assignment.assignment_id}}">Update Progress</a>
+        </td>
       </tr>
       {% else %}
         <li><em>No upcoming assignments.</em></li>

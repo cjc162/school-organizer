@@ -8,7 +8,7 @@ from sqlalchemy.sql import select
 from sqlalchemy.sql.functions import func
 from werkzeug import check_password_hash, generate_password_hash
 
-from models import db, User, Projects
+from models import db, User, Assignments
 
 app = Flask(__name__)
 
@@ -122,7 +122,7 @@ def assignments():
 		return redirect(url_for('index'))
 
 	# Get all events the current user has created
-	assignments = Projects.query.filter_by(user_id=g.user.user_id).order_by(Projects.date.asc()).all()	
+	assignments = Assignments.query.filter_by(user_id=g.user.user_id).order_by(Assignments.due_date.asc()).all()	
 
 	return render_template('assignments.html', assignments = assignments)
 
@@ -143,7 +143,8 @@ def add_assignments():
 		# Assignment successfully created
 		else:
 			date = get_date_object(request.form['date'])
-			db.session.add(Projects(session['user_id'], request.form['name'], request.form['type'], date))
+
+			db.session.add(Assignments(session['user_id'], request.form['name'], request.form['type'], date))
 			db.session.commit()
 
 			flash('Assignment successfully created')
@@ -151,6 +152,45 @@ def add_assignments():
 			return redirect(url_for('assignments'))
 	return render_template('add_assignments.html', error=error)
 
+@app.route('/delete_assignment/<int:id>')
+def delete_assignment(id):
+	if not g.user:
+		return redirect(url_for('index'))
+
+	assignment_to_delete = Assignments.query.filter_by(user_id=g.user.user_id, assignment_id=id).first()
+
+	if (assignment_to_delete is None):
+		abort(404)
+
+	db.session.delete(assignment_to_delete)
+	db.session.commit()
+	flash('Assignment successfully deleted')
+
+	return redirect(url_for('index'))
+
+@app.route('/update_progress/<int:id>', methods=['GET', 'POST'])
+def update_progress(id):
+	if not g.user:
+		return redirect(url_for('index'))
+
+	assignment_to_update = Assignments.query.filter_by(user_id=g.user.user_id, assignment_id=id).first()
+
+	if (assignment_to_update is None):
+		abort(404)
+	error = None
+	if request.method == 'POST':
+		# Check progress is not empty
+		if not request.form['progress']:
+			error = 'You have to enter an update progress'
+		# Progress successfully updated
+		else:
+			assignment_to_update.progress = request.form['progress']
+			db.session.commit()
+
+			flash('Assignment progress successfully updated')
+
+			return redirect(url_for('assignments'))
+	return render_template('update_progress.html', error=error, assignment_name=assignment_to_update.name, id=id)
 
 
 

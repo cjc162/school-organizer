@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block title %}Update {{ assignment_name }}'s Progress{% endblock %}
+{% block body %}
+  	{% if error %}<div class="error"><strong>Error:</strong> {{ error }}</div>{% endif %}
+	<form action="" method="post">
+		<h2>Update {{ assignment_name }}'s Progress</h2>
+		<dl>
+		  <dt>Updated Progress:
+		  <dd><input type="number" name="progress" min="0" max="100">
+		</dl>
+		<div class="actions"><input type="submit" value="Update Progress"></div>
+	</form>
+{% endblock %}
