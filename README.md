@@ -1,4 +1,4 @@
-To view the website locally follow these steps:
+**To view the website locally follow these steps:**
 
 1. Ensure [python/pip](https://pip.pypa.io/en/stable/installing/) is installed
 2. Navigate into this directory from the command line and run "pip install -r requirements.txt" (pip3 if python 2 and python 3 are installed on your computer)
