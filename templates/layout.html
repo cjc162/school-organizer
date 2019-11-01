@@ -1,39 +1,45 @@
 <!doctype html>
-<title>{% block title %}Welcome{% endblock %} | Organizer</title>
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-<link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.ico') }}">
-  <header class="clearfix">
-    <div class="container">
-      <div class="header-left">
-        <h1>School Organizer</h1>
+<html>
+  <head>
+    <title>{% block title %}Welcome{% endblock %} | Organizer</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.ico') }}">
+  </head>
+  <body>
+    <header class="clearfix">
+      <div class="container">
+        <div class="header-left">
+          <h1>School Organizer</h1>
+        </div>
+        <div class="header-right">
+          <label for="open">
+            <span class="hidden-desktop"></span>
+          </label>
+          <input type="checkbox" name="" id="open">
+            <nav>
+              {% if g.user %}
+                  <a href="{{ url_for('assignments') }}">View Assignments</a>
+                  <a href="{{ url_for('add_assignments') }}">Add Assignments</a>
+                  <a href="{{ url_for('logout') }}">Sign Out</a>
+              {% else %}
+                  <a href="{{ url_for('index') }}">Login</a>
+                  <a href="{{ url_for('register') }}">Register</a>
+              {% endif %}
+          </nav>
+        </div>
       </div>
-      <div class="header-right">
-        <label for="open">
-          <span class="hidden-desktop"></span>
-        </label>
-        <input type="checkbox" name="" id="open">
-          <nav>
-            {% if g.user %}
-                <a href="{{ url_for('assignments') }}">View Assignments</a>
-                <a href="{{ url_for('add_assignments') }}">Add Assignments</a>
-                <a href="{{ url_for('logout') }}">Sign Out</a>
-            {% else %}
-                <a href="{{ url_for('index') }}">Login</a>
-                <a href="{{ url_for('register') }}">Register</a>
-            {% endif %}
-        </nav>
-      </div>
+    </header>
+    {% with flashes = get_flashed_messages() %}
+      {% if flashes %}
+        <ul class="flashes">
+        {% for message in flashes %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    <div class="body">
+    {% block body %}{% endblock %}
     </div>
-  </header>
-  {% with flashes = get_flashed_messages() %}
-    {% if flashes %}
-      <ul class="flashes">
-      {% for message in flashes %}
-        <li>{{ message }}
-      {% endfor %}
-      </ul>
-    {% endif %}
-  {% endwith %}
-  <div class="body">
-  {% block body %}{% endblock %}
-  </div>
+  </body>
+</html>

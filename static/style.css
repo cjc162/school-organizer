@@ -155,20 +155,6 @@ tr:nth-child(odd) td {
 	padding-bottom: 20px;
 }
 
-
-*:before, *:after{
-	-webkit-box-sizing: border-box;
-}
-
-.clearfix {
-  *zoom: 1;
-}
-
-html{
-	font-family: Helvetica, arial, sans-serif;
-	font-size: 12px;
-}
-
 .clearfix:before, .clearfix:after {
   display: table;
   line-height: 0;
