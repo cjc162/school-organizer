@@ -1,5 +1,9 @@
-* {
-    box-sizing: border-box;
+*{
+  	margin: 0;
+	padding: 0;
+	outline: none;
+	border: none;
+	-webkit-box-sizing: border-box;
 }
 
 body{
@@ -8,50 +12,6 @@ body{
 	font-size: 16px;
 	line-height: 1.6em;
 	margin: 0;
-}
-
-.container{
-	width: 100%;
-	margin: auto;
-	overflow: hidden;
-	background-color: #0390fc;
-}
-
-#navbar{
-	padding-bottom: 10px;
-	color: white;
-}
-
-#navbar ul{
-	list-style: none;
-}
-
-#navbar li{
-	padding: 5px;
-	display: inline;
-	float: right;
-}
-
-#navbar a{
-	color: white;
-	text-decoration: none;
-	font-size: 20px;
-	padding-right: 10px;
-	padding-left: 10px;
-	border-style: solid;
-	border-width: 1px;
-
-}
-
-#navbar a:hover{
-	background-color: #0390fc;
-	border-color: #0390fc;
-	color: black;
-}
-
-#navbar h1{
-	font-size: 42px;
-	margin-left: 25px;
 }
 
 .actions {
@@ -185,10 +145,124 @@ tr:nth-child(odd) td {
     color: #b3b3b3;
     font-size: 12px;
 }
+
 .form .message a {
     color: #4CAF50;
     text-decoration: none;
 }
 
+.form h2 {
+	padding-bottom: 20px;
+}
 
 
+*:before, *:after{
+	-webkit-box-sizing: border-box;
+}
+
+.clearfix {
+  *zoom: 1;
+}
+
+html{
+	font-family: Helvetica, arial, sans-serif;
+	font-size: 12px;
+}
+
+.clearfix:before, .clearfix:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.container{
+	width: 80%;
+	margin: 0 auto;
+}
+
+header{
+	width: 100%;
+	height: auto;
+	background: #2c3e50;
+	margin-bottom: 20px;
+}
+
+.header-left, .header-right{
+	position: relative;
+	color: white;
+	float: left;
+}
+
+.header-left{
+	width: 30%;
+}
+
+.header-right label{
+	position: absolute;
+	top: -3.7em;
+	right: 0;
+	cursor: pointer;
+}
+
+.header-right span{
+	position: relative;
+	width: 2em;
+	height: 2em;
+	background: rgba(255,255,255,.3);
+	-webkit-transition: all .3s ease;
+}
+
+.header-right span:hover{
+	background: rgba(255,255,255,.6);
+}
+
+.header-right span:before, .header-right span:after{
+	content: '';
+	position: absolute;
+	width: 2em;
+	height: .5em;
+	top: 4px;
+	left: 0;
+	background: black;
+}
+
+.header-right span:after{
+	top: 14px;
+}
+
+.header-right{
+	width: 70%;
+	text-align: right;
+}
+
+#open{
+	display: none;
+}
+
+h1{
+	font-weight: 300;
+	line-height: 40px;
+}
+
+a{
+	text-decoration: none;
+	color: white;
+}
+
+nav>a{
+	position: relative;
+	display: inline-block;
+	font-size: 13px;
+	line-height: 40px;
+	padding: 0 2em;
+	-webkit-transition: all .3s ease;
+}
+
+nav>a:hover{
+	background: rgba(255,255,255,.9);
+	color: black;
+}
