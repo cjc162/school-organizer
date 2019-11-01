@@ -147,7 +147,7 @@ def add_assignments():
 			db.session.add(Assignments(session['user_id'], request.form['name'], request.form['type'], date))
 			db.session.commit()
 
-			flash('Assignment successfully created')
+			flash(request.form['name'] + ' successfully created')
 
 			return redirect(url_for('assignments'))
 	return render_template('add_assignments.html', error=error)
@@ -187,10 +187,11 @@ def update_progress(id):
 			assignment_to_update.progress = request.form['progress']
 			db.session.commit()
 
-			flash('Assignment progress successfully updated')
+			flash(assignment_to_update.name + "'s progress successfully updated")
 
 			return redirect(url_for('assignments'))
 	return render_template('update_progress.html', error=error, assignment_name=assignment_to_update.name, id=id)
+
 
 
 

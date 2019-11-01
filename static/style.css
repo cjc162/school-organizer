@@ -3,7 +3,8 @@
 }
 
 body{
-	background-color: white;
+	background-image: url('background.jpg');
+	font-family: Helvetica, Arial, sans-serif;
 	font-size: 16px;
 	line-height: 1.6em;
 	margin: 0;
@@ -13,7 +14,7 @@ body{
 	width: 100%;
 	margin: auto;
 	overflow: hidden;
-	background-color: #4b8bf2;
+	background-color: #0390fc;
 }
 
 #navbar{
@@ -34,7 +35,7 @@ body{
 #navbar a{
 	color: white;
 	text-decoration: none;
-	font-size: 25px;
+	font-size: 20px;
 	padding-right: 10px;
 	padding-left: 10px;
 	border-style: solid;
@@ -43,8 +44,8 @@ body{
 }
 
 #navbar a:hover{
-	background-color: #4b8bf2;
-	border-color: #4b8bf2;
+	background-color: #0390fc;
+	border-color: #0390fc;
 	color: black;
 }
 
@@ -53,9 +54,23 @@ body{
 	margin-left: 25px;
 }
 
-form{
-	margin: auto;
-	text-align: center;
+.actions {
+	padding-top: 20px;
+}
+
+a.action_link:link, a:visited {
+  background-color: #0390fc;
+  color: white;
+  padding: 4px 8px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  width: 150px;
+  margin:1px;
+}
+
+a.action_link:hover, a.action_link:active {
+  background-color: blue;
 }
 
 .flashes {
@@ -72,14 +87,14 @@ form{
 	text-align: center;
 }
 
-.assignments_table table, h2 {
+.assignments_table table {
 	text-align: center;
 	margin: auto;
 	margin-top: 10px;
+	margin-bottom: 75px;
 }
 
-.assignments_table table, td, th{
-	border: 1px solid #aaa;
+.assignments_table h2 {
 	text-align: center;
 }
 
@@ -87,6 +102,92 @@ form{
 	list-style: none;
 	text-align: center;
 	padding-bottom: 5px;
+}
+
+table { 
+  color: #333;
+  font-family: Helvetica, Arial, sans-serif;
+  width: 640px;
+  border-collapse: collapse; 
+  border-spacing: 0; 
+}
+		
+td, th {  
+	border: 0 none; 
+	height: 30px; 
+}
+			
+th {
+	background: #001399;
+	color: #FFF; 
+	font-weight: bold;
+	height: 40px;
+}
+		
+td { 
+	background: #FAFAFA;
+	text-align: center;
+}
+		
+tr:nth-child(even) td { 
+	background: #EEE; 
+} 
+tr:nth-child(odd) td { 
+	background: #FDFDFD; 
+}
+
+.form-page {
+    width: 360px;
+    padding-top: 10px;
+    margin: auto;
+}
+
+.form {
+    position: relative;
+    background: #FFFFFF;
+    max-width: 360px;
+    margin: 0 auto;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.form input {
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.submit {
+    padding-top: 20px;
+    text-transform: uppercase;
+    outline: 0;
+    background: #4CAF50 !important;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.submit:hover, .submit:active, .submit:focus {
+    background: #43A047 !important;
+}
+
+.form .message {
+    margin: 15px 0 0;
+    color: #b3b3b3;
+    font-size: 12px;
+}
+.form .message a {
+    color: #4CAF50;
+    text-decoration: none;
 }
 
 

@@ -20,9 +20,9 @@
             <progress value={{ assignment.progress }} max="100"></progress>
         </td>
        	<td>
-            <a href="/delete_assignment/{{assignment.assignment_id}}">Delete</a>
+            <a href="/delete_assignment/{{assignment.assignment_id}}" class="action_link">Delete</a>
             <br>
-            <a href="/update_progress/{{assignment.assignment_id}}">Update Progress</a>
+            <a href="/update_progress/{{assignment.assignment_id}}" class="action_link">Update Progress</a>
         </td>
       </tr>
       {% else %}
