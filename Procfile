@@ -1,1 +1,1 @@
-web: gunicorn StatsMW:app
+web: gunicorn organizer:app
