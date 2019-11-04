@@ -14,7 +14,7 @@
       {% for assignment in assignments %}
       <tr>
         <td>{{ assignment.name }}</td>
-        <td>{{ assignment.due_date.date() }}</td>
+        <td class="due_date">{{ assignment.due_date.date() }}</td>
        	<td>{{ assignment.assignment_type }}</td>
        	<td>
             <progress value={{ assignment.progress }} max="100"></progress>
