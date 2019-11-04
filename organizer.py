@@ -14,7 +14,7 @@ app = Flask(__name__)
 
 SECRET_KEY = 'development key'
 
-SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(app.root_path, 'organizer.db')
+SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
 
 app.config.from_object(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
