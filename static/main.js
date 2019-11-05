@@ -12,7 +12,7 @@ function chcekDueDates() {
 
 	  	if (due_date.setDate(due_date.getDate() + 1) < today) {
 	  		inputs[i].style.background = "red"
-	  	} else if (due_date.setDate(due_date.getDate() - 3) < today) {
+	  	} else if (due_date.setDate(due_date.getDate() - 1) < today) {
 	  		inputs[i].style.background = "yellow"
 	  	}
 

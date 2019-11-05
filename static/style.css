@@ -30,7 +30,7 @@ a.action_link:link, a:visited {
 }
 
 a.action_link:hover, a.action_link:active {
-  background-color: blue;
+  background-color: blue !important;
 }
 
 .flashes {
@@ -61,6 +61,9 @@ a.action_link:hover, a.action_link:active {
 .assignments_table li{
 	list-style: none;
 	text-align: center;
+}
+
+#no_assignments {
 	padding-bottom: 5px;
 }
 
@@ -92,8 +95,13 @@ td {
 tr:nth-child(even) td { 
 	background: #EEE; 
 } 
+
 tr:nth-child(odd) td { 
 	background: #FDFDFD; 
+}
+
+tr:nth-child(even) a {
+	background-color: #0273ca !important;
 }
 
 .form-page {
