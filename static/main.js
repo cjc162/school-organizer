@@ -1,8 +1,8 @@
 window.onload = function() {
-	chcekDueDates();
+	checkDueDates();
 }
 
-function chcekDueDates() {
+function checkDueDates() {
 	var inputs = document.getElementsByClassName("due_date");
 	var today = new Date();
 
