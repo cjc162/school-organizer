@@ -1,6 +1,10 @@
 <div id="calendar"></div>  
 <script>
-	var data = '{{ data }}';
+	var test = {
+		value: '{{ data|tojson }}'
+	};
+
+	
 </script>
 <link rel="stylesheet" type="text/css" href="/static/calendar.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>

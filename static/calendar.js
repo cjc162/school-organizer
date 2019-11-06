@@ -325,7 +325,8 @@
 }();
 
 !function() {
-  console.log(data);
+  console.log(test.value)
+
   var data = [
     { eventName: 'Website', calendar: 'Project', color: 'blue', day: 6, month: 11, year:2020 },
     { eventName: 'Read for Philosophy', calendar: 'Homework', color: 'yellow', day: 9, month: 11, year:2020 },
