@@ -14,6 +14,7 @@ app = Flask(__name__)
 
 SECRET_KEY = 'development key'
 
+#SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(app.root_path, 'organizer.db')
 SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
 
 app.config.from_object(__name__)
@@ -164,7 +165,7 @@ def delete_assignment(id):
 
 	db.session.delete(assignment_to_delete)
 	db.session.commit()
-	flash(assignment_to_delete.name + ' successfully deleted')
+	flash('Assignment successfully deleted')
 
 	return redirect(url_for('index'))
 
@@ -193,6 +194,38 @@ def update_progress(id):
 	return render_template('update_progress.html', error=error, assignment_name=assignment_to_update.name, id=id)
 
 
+@app.route('/calendar_view', methods=['GET', 'POST'])
+def calendar_view():
+	# If user is not logged in
+	if not g.user:
+		return redirect(url_for('index'))
+
+	# Get all events the current user has created
+	assignments = Assignments.query.filter_by(user_id=g.user.user_id).order_by(Assignments.due_date.asc()).all()	
+
+	data = []
+	for assignment in assignments:
+		data_dict = {}
+		data_dict["day"] = str(assignment.due_date.date()).split("-")[2]
+		data_dict["month"] = str(assignment.due_date.date()).split("-")[1]
+		data_dict["year"] = str(assignment.due_date.date()).split("-")[0]
+		data_dict["eventName"] = assignment.name
+		data_dict["calendar"] = assignment.assignment_type
+
+		if (data_dict["calendar"] == "Exam"):
+			data_dict["color"] = "orange"
+		elif (data_dict["calendar"] == "Project"):
+			data_dict["color"] = "blue"
+		elif (data_dict["calendar"] == "Homework"):
+			data_dict["color"] = "yellow"
+		else:
+			data_dict["color"] = "green"
+
+		data.append(data_dict)
+
+	print(data)
+
+	return render_template('calendar_view.html', data=data)
 
 
 

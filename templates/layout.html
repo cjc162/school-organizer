@@ -19,6 +19,7 @@
           <input type="checkbox" name="" id="open">
             <nav>
               {% if g.user %}
+                  <a href="{{ url_for('calendar_view') }}">Calendar View</a>
                   <a href="{{ url_for('assignments') }}">View Assignments</a>
                   <a href="{{ url_for('add_assignments') }}">Add Assignments</a>
                   <a href="{{ url_for('logout') }}">Sign Out</a>
