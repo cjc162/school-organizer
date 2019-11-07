@@ -1,9 +1,11 @@
 {% extends "layout.html" %}
+{% block title %}Calendar View{% endblock %}
 {% block css %}
 	<link rel="stylesheet" type="text/css" href="/static/calendar.css">
 {% endblock %}
 
 {% block body %}
+	<h2 id="calendar_view">Calendar View</h2>
 	<div id="calendar"></div>  
 	<script>
 		var events_data = {

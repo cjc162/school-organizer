@@ -165,7 +165,7 @@ def delete_assignment(id):
 
 	db.session.delete(assignment_to_delete)
 	db.session.commit()
-	flash('Assignment successfully deleted')
+	flash(assignment_to_delete.name + ' successfully deleted')
 
 	return redirect(url_for('index'))
 

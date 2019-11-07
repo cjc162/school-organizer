@@ -23,8 +23,9 @@ body {
   transform: translate3d(0, 0, 0);
   width: 420px;
   margin: 0 auto;
-  height: 610px;
+  height: 620px;
   overflow: hidden;
+  padding-top: 10px;
 }
 
 .header {
@@ -43,6 +44,11 @@ body {
   line-height: 50px;
   font-weight: 100;
   letter-spacing: 1px;
+}
+
+#calendar_view {
+  text-align: center;
+  color: black
 }
 
 .left, .right {
