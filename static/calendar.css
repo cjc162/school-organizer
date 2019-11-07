@@ -8,7 +8,6 @@ body {
  font-weight: 100;
  color: rgba(255, 255, 255, 1);
  margin: 0;
- padding-top: 25px;
  background-image: url('background.jpg');
  -webkit-touch-callout: none;
  -webkit-user-select: none;
@@ -24,7 +23,7 @@ body {
   transform: translate3d(0, 0, 0);
   width: 420px;
   margin: 0 auto;
-  height: 570px;
+  height: 610px;
   overflow: hidden;
 }
 
@@ -266,7 +265,6 @@ body {
   height: 30px;
   background: rgba(60, 60, 60, 1);
   line-height: 30px;
-
 }
 
 .entry {

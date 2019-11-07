@@ -325,15 +325,8 @@
 }();
 
 !function() {
-  console.log(test.value)
+  var data = events_data.value;
 
-  var data = [
-    { eventName: 'Website', calendar: 'Project', color: 'blue', day: 6, month: 11, year:2020 },
-    { eventName: 'Read for Philosophy', calendar: 'Homework', color: 'yellow', day: 9, month: 11, year:2020 },
-    { eventName: 'Data Science', calendar: 'Exam', color: 'orange', day: 12, month: 11, year:2020 },
-    { eventName: 'Schedule', calendar: 'Other', color: 'green', day: 13, month: 11, year:2020 },
-  ];
-
-  var calendar = new Calendar('#calendar', data);
+  var calendar = new Calendar('#calendar', data);  
 
 }();

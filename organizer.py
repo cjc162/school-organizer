@@ -223,8 +223,6 @@ def calendar_view():
 
 		data.append(data_dict)
 
-	print(data)
-
 	return render_template('calendar_view.html', data=data)
 
 

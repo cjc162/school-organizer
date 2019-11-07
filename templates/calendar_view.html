@@ -1,11 +1,18 @@
-<div id="calendar"></div>  
-<script>
-	var test = {
-		value: '{{ data|tojson }}'
-	};
+{% extends "layout.html" %}
+{% block css %}
+	<link rel="stylesheet" type="text/css" href="/static/calendar.css">
+{% endblock %}
 
-	
-</script>
-<link rel="stylesheet" type="text/css" href="/static/calendar.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
-<script src="/static/calendar.js"></script>
+{% block body %}
+	<div id="calendar"></div>  
+	<script>
+		var events_data = {
+			value: {{ data|tojson }}
+		};
+	</script>
+{% endblock %}
+
+{% block javascript %}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
+	<script src="/static/calendar.js"></script>
+{% endblock %}
