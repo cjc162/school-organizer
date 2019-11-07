@@ -6,3 +6,6 @@
    
 * [Navbar](https://codepen.io/ImBobby/pen/mxqKL)
    - Website states any public pens are free to be copied, modified, used, merged, published, sublicensed, or sold.
+   
+* [Calendar](https://codepen.io/peanav/pen/ulkof)
+   - Website states any public pens are free to be copied, modified, used, merged, published, sublicensed, or sold.
