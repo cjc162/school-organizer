@@ -3,7 +3,7 @@
 }
 
 body {
- overflow: hidden;
+ overflow: auto;
  font-family: 'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight', 'Helvetica Neue', Arial, Helvetica, sans-serif;
  font-weight: 100;
  color: rgba(255, 255, 255, 1);
@@ -26,6 +26,7 @@ body {
   height: 620px;
   overflow: hidden;
   padding-top: 10px;
+  margin-bottom: 50px;
 }
 
 .header {
@@ -47,6 +48,7 @@ body {
 }
 
 #calendar_view {
+  padding-top: 25px;
   text-align: center;
   color: black
 }
