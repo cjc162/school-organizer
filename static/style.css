@@ -53,6 +53,7 @@ a.action_link:hover, a.action_link:active {
 	margin: auto;
 	margin-top: 10px;
 	margin-bottom: 75px;
+  overflow: auto;
 }
 
 .assignments_table h2 {
